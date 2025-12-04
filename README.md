@@ -1,0 +1,2 @@
+# LetsGoCheerGirlDX
+チアリーディング育成ゲームリポジトリ
