@@ -6,11 +6,11 @@
  * ============================================================ */
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro; // TextMeshProを使うために必要
-using UnityEngine.EventSystems; // クリックイベントのために追加
+using TMPro;
+using UnityEngine.EventSystems;
 
+// IPointerClickHandlerを実装し、2段階クリックを処理
 public class TeamButtonUI : MonoBehaviour, IPointerClickHandler {
-    // InspectorでSOをアサイン
     public TeamDataSO teamData;
 
     [Header("UI参照")]
@@ -18,47 +18,66 @@ public class TeamButtonUI : MonoBehaviour, IPointerClickHandler {
     public TextMeshProUGUI descriptionText;
     public TextMeshProUGUI difficultyText;
     public Image teamImage;
-    // カーソル表示用のImageまたはPanel
-    public GameObject cursorIndicator;
-    public Button selectButton; // 決定用のボタンは非表示にして、決定処理をIPointerClickHandlerで代替しても良い
+    public GameObject cursorIndicator; // カーソル表示用
 
-    private MakingSceneController controller; // メインコントローラーへの参照
-    private bool isSelected = false; // ★このフラグで選択状態を管理
+    private MakingSceneController controller;
+    private bool isSelected = false;
 
-    public void Setup(MakingSceneController makingController){
-        controller = makingController;
-
-        // データをUIに反映（省略）
-        // ...
-
-        // 初期状態ではカーソルを非表示
-        SetSelected(false);
-
-        // Note: ButtonコンポーネントのAddListenerは不要になるか、
-        // IPointerClickHandlerと併用する場合は注意が必要です。
-        // 今回はIPointerClickHandler（UIのどこをタップしても反応）で統一します。
-
-        // selectButton.onClick.AddListener(OnTeamSelected);
+    // シーンロード時にUIを更新（エディタでの視認性向上）
+    void Awake()
+    {
+        UpdateUIFromData();
     }
 
-    // カーソル表示・非表示を切り替える外部公開メソッド
-    public void SetSelected(bool selected){
+    // MakingSceneControllerから呼ばれる初期化処理
+    public void Setup(MakingSceneController makingController)
+    {
+        controller = makingController;
+        SetSelected(false);
+    }
+
+    // SOの内容をTextMeshProに書き込むロジック
+    private void UpdateUIFromData()
+    {
+        if (teamData == null) return;
+
+        nameText.text = teamData.teamName;
+        descriptionText.text = teamData.description;
+
+        // 難易度を星マークに変換
+        string stars = "";
+        for (int i = 0; i < 5; i++)
+        {
+            stars += (i < teamData.difficultyStars) ? "★" : "☆";
+        }
+        difficultyText.text = stars;
+
+        teamImage.sprite = teamData.teamImage;
+    }
+
+    // カーソル表示・非表示を切り替えるメソッド
+    public void SetSelected(bool selected)
+    {
+        Debug.Log($"[{teamData.teamName}] 選択状態を {selected} に設定。");
         isSelected = selected;
-        // UIのカーソルインジケーターの表示・非表示を切り替える
-        if (cursorIndicator != null){
+
+        if (cursorIndicator != null)
+        {
             cursorIndicator.SetActive(selected);
         }
-
-        // ★カーソルが当たった時にパネルの縁の色を変えるなど、視覚的なフィードバックも可能
     }
 
-    // ★ IPointerClickHandler インターフェースを実装してクリックを処理
-    public void OnPointerClick(PointerEventData eventData){
-        if (isSelected){
-            // 2回目クリック: 既に選択状態だった場合、決定処理を実行
+    // クリックイベントの処理
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        if (isSelected)
+        {
+            // 2回目クリック: 決定処理を実行
             controller.SelectTeam(teamData);
-        }else{
-            // 1回目クリック: 選択状態に移行
+        }
+        else
+        {
+            // 1回目クリック: 選択状態に移行 (カーソル表示と中央詳細更新)
             controller.SetTeamSelection(this);
         }
     }

@@ -5,28 +5,27 @@
  * Ver 0.00a : 作成
  * ============================================================ */
 using UnityEngine;
-using System.Collections.Generic; // Listを使うために必要
+using System.Collections.Generic;
+using TMPro;
 
 public class MakingSceneController : MonoBehaviour {
     [Header("フェーズパネル")]
-    public GameObject teamSelectPanel; // フェーズ1 (チーム選択)
-    public GameObject charInfoPanel;   // フェーズ2 (名前・身長など)
+    public GameObject teamSelectPanel;
+    public GameObject charInfoPanel;
 
     [Header("チーム選択関連")]
     public List<TeamButtonUI> teamButtons;
-
-    // ★ 現在選択されているボタンを追跡する変数
     private TeamButtonUI currentSelectedButton = null;
+    private TeamDataSO selectedTeamData;
 
-    // 現在のプレイヤーデータ (全フェーズを通じて値を保持)
-    private PlayerDataSO playerCurrentData;
+    [Header("チーム詳細表示パネル")]
+    public TextMeshProUGUI centralDetailName;
+    public TextMeshProUGUI centralDetailDescription;
+    public TextMeshProUGUI centralDetailDifficulty;
 
-    void Start(){
-        // プレイヤーデータSOをロード (まだ初期化していない状態)
-        // プレイヤーデータを初期化するロジックをここに書くか、
-        // 予め空のSOアセットをInspectorで参照させます。
-
-        // チーム選択画面を表示し、他の画面を非表示にする
+    void Start()
+    {
+        // 初期パネル設定
         teamSelectPanel.SetActive(true);
         charInfoPanel.SetActive(false);
 
@@ -34,11 +33,17 @@ public class MakingSceneController : MonoBehaviour {
         foreach (var button in teamButtons){
             button.Setup(this);
         }
+
+        // 中央パネルの初期表示（最初のデータがないため、ガイド表示）
+        centralDetailName.text = "チームを選んでください";
+        centralDetailDescription.text = "画面左右のチームをタップして詳細を確認し、再度タップすると決定します。";
+        centralDetailDifficulty.text = "難易度：ー";
     }
 
-    // ★ TeamButtonUIから1回目のクリックで呼び出される
-    public void SetTeamSelection(TeamButtonUI selectedButton){
-        // 既に何か選択されている場合は、そのカーソルを解除
+    // 1回目クリック時：カーソル表示と中央詳細更新
+    public void SetTeamSelection(TeamButtonUI selectedButton)
+    {
+        // 既に選択されていたボタンのカーソルを解除
         if (currentSelectedButton != null && currentSelectedButton != selectedButton){
             currentSelectedButton.SetSelected(false);
         }
@@ -47,19 +52,33 @@ public class MakingSceneController : MonoBehaviour {
         selectedButton.SetSelected(true);
         currentSelectedButton = selectedButton;
 
-        // ★ チームの説明パネルがボタンの近くに表示されるように制御することも可能
-    }
-    // TeamButtonUIから2回目のクリック（決定）で呼び出される
-    public void SelectTeam(TeamDataSO selectedTeam){
-        Debug.Log("チームが最終決定されました: " + selectedTeam.teamName);
+        // 中央の詳細表示パネルを更新
+        TeamDataSO teamData = selectedButton.teamData;
 
-        // 1. プレイヤーデータに選択したチーム情報を書き込む（TODO）
+        if (centralDetailName != null){
+            centralDetailName.text = "【" + teamData.teamName + "】";
+        }
+        if (centralDetailDescription != null){
+            centralDetailDescription.text = teamData.description;
+        }
+        if (centralDetailDifficulty != null){
+            string stars = "";
+            for (int i = 0; i < 5; i++){
+                stars += (i < teamData.difficultyStars) ? "★" : "☆";
+            }
+            centralDetailDifficulty.text = "難易度：" + stars;
+        }
+    }
+
+    // 2回目クリック時：チーム決定とフェーズ遷移
+    public void SelectTeam(TeamDataSO selectedTeam){
+        Debug.Log("チームが最終決定されました: " + selectedTeam.teamName + " -> フェーズ2へ");
+
+        // 1. 選択されたデータを保持
+        selectedTeamData = selectedTeam;
+
         // 2. フェーズ1を非表示にし、フェーズ2に遷移
         teamSelectPanel.SetActive(false);
         charInfoPanel.SetActive(true);
-
-        // ...
     }
-
-
 }
