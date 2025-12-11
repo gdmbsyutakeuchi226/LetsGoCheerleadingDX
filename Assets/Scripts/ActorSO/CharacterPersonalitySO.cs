@@ -1,9 +1,12 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
-[CreateAssetMenu(fileName = "«Šiƒf[ƒ^", menuName = "Scriptable Objects/CharacterPersonalitySO")]
+[CreateAssetMenu(fileName = "æ€§æ ¼ãƒ‡ãƒ¼ã‚¿", menuName = "Scriptable Objects/CharacterPersonalitySO")]
 public class CharacterPersonalitySO : ScriptableObject {
-    public string personalityName; // —áFŠ®àøå‹`Ò
-    public float statGainMultiplier_Technical; // ‹Zp—ÍƒAƒbƒv”{—¦
-    public float moodDecreaseRate; // ‚â‚é‹CŒ¸­—¦
-    // ...‚»‚Ì‘¼«Ši‚É‚æ‚és“®“Á’¥
+    public int personalityID;
+    public string personalityName; // ä¾‹ï¼šå®Œç’§ä¸»ç¾©è€…, ä¸–è©±ç„¼ã
+    [TextArea(2, 4)]
+    public string description;
+    public float initialMoodBonus;
+    public float technicalStatGain; // æˆé•·è£œæ­£å€¤
+    // ... ãã®ä»–ã€æ€§æ ¼ã«é–¢é€£ã™ã‚‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 }
