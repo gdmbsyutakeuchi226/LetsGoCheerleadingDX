@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 49853c4a53832ad439e880dc33e68a01, type: 3}
-  m_Name: Type1w2
+  m_Name: Type4_SO
   m_EditorClassIdentifier: Assembly-CSharp::CharacterPersonalitySO
-  personalityID: 1
-  personalityName: "\u64C1\u8B77\u8005"
-  description: "\u7406\u60F3\u3078\u306E\u60C5\u71B1\u3068\u3068\u3082\u306B\u3001\u89AA\u3057\u307F\u3084\u3059\u3055\u3084\u884C\u52D5\u529B\u3092\u5099\u3048\u3066\u3044\u307E\u3059\u3002"
-  initialMoodBonus: 1
+  personalityID: 4
+  personalityName: "\u5922\u60F3\u5BB6"
+  description: 
+  initialMoodBonus: 4
   technicalStatGain: 0
