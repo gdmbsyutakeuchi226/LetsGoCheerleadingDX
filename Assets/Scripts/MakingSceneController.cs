@@ -37,6 +37,11 @@ public class MakingSceneController : MonoBehaviour {
     [Header("フェーズ2 マスターデータ")]
     public List<CharacterPersonalitySO> personalityDataList;
 
+    [Header("フェーズ3 UI 参照")]
+    public GameObject appearancePanel; // フェーズ3パネル
+    public Transform characterParent; // ちびキャラモデルを配置する親オブジェクト
+    public Transform partButtonContainer; // パーツ選択ボタンを生成する親オブジェクト
+
     void Start(){
         // 初期パネル設定
         teamSelectPanel.SetActive(true);
@@ -210,5 +215,47 @@ public class MakingSceneController : MonoBehaviour {
     private void OnCharInfoConfirmed(){
         // 最終データをPlayerDataSOに書き込み、フェーズ3(見た目)に遷移
         // ...
+    }
+
+    // フェーズ3へ遷移するメソッド
+    private void InitializeAppearancePanel(){
+        // フェーズ2を非表示にし、フェーズ3を表示
+        charInfoPanel.SetActive(false);
+        appearancePanel.SetActive(true);
+
+        // キャラクターモデルをシーンにインスタンス化
+        // (ここでは仮に固定の基本モデルを生成)
+        GameObject characterModel = Instantiate(Resources.Load<GameObject>("Prefabs/BaseCharacter"), characterParent);
+
+        // 最初のカテゴリ（例: 髪型）のパーツボタンを生成
+        GeneratePartButtons("HairStyle");
+    }
+
+    // 選択されたカテゴリのパーツボタンを動的に生成する
+    private void GeneratePartButtons(string category){
+        // 古いボタンを削除
+        foreach (Transform child in partButtonContainer){
+            Destroy(child.gameObject);
+        }
+
+        // ここで PartDataSO をロードし、categoryでフィルタリング（データベース/リソースからのロード処理）
+        // ... 例として、Resource.LoadAllなどで全パーツデータを取得 ...
+
+        // 取得したパーツデータに基づき、ボタンを生成し、クリックイベントを登録
+        // partButton.onClick.AddListener(() => OnPartSelected(partData, characterModel));
+    }
+
+    // パーツボタンがクリックされた時の処理
+    public void OnPartSelected(PartDataSO partData, GameObject characterModel){
+        // 選択されたパーツに応じて、キャラクターモデルの該当部分を更新する
+        // 例: 
+        // if (partData.category == "HairStyle") {
+        //     // 古い髪型メッシュをDestroyし、新しい髪型メッシュをInstantiateする
+        // } else if (partData.category == "HairColor") {
+        //     // 髪のMaterialを新しい色に変更する
+        // }
+
+        // 最終的なデータは PlayerDataSO に保存する
+        // selectedPlayerData.hairStyle = partData;
     }
 }
