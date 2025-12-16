@@ -213,8 +213,18 @@ public class MakingSceneController : MonoBehaviour {
 
     // 決定ボタンが押された時の最終処理
     private void OnCharInfoConfirmed(){
-        // 最終データをPlayerDataSOに書き込み、フェーズ3(見た目)に遷移
-        // ...
+        // 1. デバッグログで入力データを確認 (オプション)
+        Debug.Log("フェーズ2情報が確定しました。名前: " + firstNameInput.text +
+                  ", 身長: " + heightInput.text);
+
+        // 2. ★★★ ここで、最終的な全データをPlayerDataSOに書き込む処理を実装 ★★★
+        // (PlayerDataSOに保存する処理は次回以降詳細化します)
+
+        // 3. ★★★ フェーズ3の初期化と遷移処理を呼び出す ★★★
+        InitializeAppearancePanel();
+
+        // 注意: フェーズ2のパネルを非表示にする処理は、
+        // InitializeAppearancePanel() の中で実行しても良いです。
     }
 
     // フェーズ3へ遷移するメソッド
@@ -223,14 +233,37 @@ public class MakingSceneController : MonoBehaviour {
         charInfoPanel.SetActive(false);
         appearancePanel.SetActive(true);
 
+        // TODO: ここでキャラクターモデルのインスタンス化やパーツの初期設定を行う
+        Debug.Log("フェーズ3：見た目デザインに遷移しました。");
+
+        // 最初のカテゴリ（例: 髪型）のパーツボタンを生成（TODO）
+        // GeneratePartButtons("HairStyle");
+
         // キャラクターモデルをシーンにインスタンス化
         // (ここでは仮に固定の基本モデルを生成)
-        GameObject characterModel = Instantiate(Resources.Load<GameObject>("Prefabs/BaseCharacter"), characterParent);
+        // 1. プレハブのロード
+        GameObject basePrefab = Resources.Load<GameObject>("Prefabs/BaseCharacter");
+
+        if (basePrefab == null){
+            // ★★★ ロード失敗時に警告を出し、処理を中断 ★★★
+            Debug.LogError("エラー: キャラクターのベースプレハブが見つかりません。パスを確認してください: Resources/Prefabs/BaseCharacter");
+            return;
+        }
+
+        // 2. インスタンス化
+        // Instantiateの第3引数(worldPositionStays)は不要なので削除
+        GameObject characterModel = Instantiate(basePrefab, characterParent);
+
+        // インスタンス化されたモデルを追跡するための変数に追加しても良い
 
         // 最初のカテゴリ（例: 髪型）のパーツボタンを生成
         GeneratePartButtons("HairStyle");
-    }
 
+        // 3. 決定ボタンに最終処理を登録
+        // ★ リスナーが登録されているか確認
+        confirmCharInfoButton.onClick.AddListener(OnCharInfoConfirmed);
+        confirmCharInfoButton.interactable = false; // 初期は無効化
+    }
     // 選択されたカテゴリのパーツボタンを動的に生成する
     private void GeneratePartButtons(string category){
         // 古いボタンを削除

@@ -574,7 +574,7 @@ GameObject:
   - component: {fileID: 228203462}
   - component: {fileID: 228203461}
   m_Layer: 5
-  m_Name: Panel
+  m_Name: PreviewPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -598,7 +598,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -566.70026, y: 4.450012}
+  m_AnchoredPosition: {x: -566.7002, y: 4.450012}
   m_SizeDelta: {x: -1373.4, y: -89.05}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &228203461
@@ -1037,7 +1037,7 @@ GameObject:
   - component: {fileID: 349084672}
   - component: {fileID: 349084671}
   m_Layer: 5
-  m_Name: BirthDayMonthText (1)
+  m_Name: BirthDayMonthText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1179,7 +1179,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &350067412
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6990,7 +6990,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1607791724
 RectTransform:
   m_ObjectHideFlags: 0
