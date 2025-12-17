@@ -254,7 +254,12 @@ public class MakingSceneController : MonoBehaviour {
         // Instantiateの第3引数(worldPositionStays)は不要なので削除
         GameObject characterModel = Instantiate(basePrefab, characterParent);
 
-        // インスタンス化されたモデルを追跡するための変数に追加しても良い
+        // UIとして扱う場合、生成直後に位置をリセットするのがコツです
+        RectTransform rect = characterModel.GetComponent<RectTransform>();
+        if (rect != null){
+            rect.anchoredPosition = Vector2.zero; // パネルの中央に配置
+            rect.localScale = Vector3.one;        // サイズを1倍に
+        }
 
         // 最初のカテゴリ（例: 髪型）のパーツボタンを生成
         GeneratePartButtons("HairStyle");

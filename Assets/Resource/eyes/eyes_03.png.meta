@@ -1,31 +1,31 @@
 fileFormatVersion: 2
-guid: ffe3864b6cfc3c3418682b9dd4a1c5d7
+guid: 0ce696cff3daa5046a27ef5c5d87ac4a
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5882246566265115250
-    second: eyes_03_0
+      213: -6568188372254964556
+    second: eyes_03 1_0
   - first:
-      213: 6106288464314100963
-    second: eyes_03_1
+      213: -5895649639932276807
+    second: eyes_03 1_1
   - first:
-      213: 285871439907057570
-    second: eyes_03_2
+      213: 8435069213834019654
+    second: eyes_03 1_2
   - first:
-      213: 3068294632976061384
-    second: eyes_03_3
+      213: 8966877173433794025
+    second: eyes_03 1_3
   - first:
-      213: 6202925134279655601
-    second: eyes_03_4
+      213: 2708754032779028317
+    second: eyes_03 1_4
   - first:
-      213: -8471014792489186809
-    second: eyes_03_5
+      213: 7704644389149347767
+    second: eyes_03 1_5
   - first:
-      213: 4931725379445405242
-    second: eyes_03_6
+      213: 9106964757658838539
+    second: eyes_03 1_6
   - first:
-      213: 1323434680717289641
-    second: eyes_03_7
+      213: 7864006619472129272
+    second: eyes_03 1_7
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -67,12 +67,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 300
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -147,13 +147,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: eyes_03_0
+      name: eyes_03 1_0
       rect:
         serializedVersion: 2
-        x: 87
-        y: 656
-        width: 425
-        height: 363
+        x: 44
+        y: 366
+        width: 136
+        height: 35
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -162,20 +162,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2725e772610f1a150800000000000000
-      internalID: 5882246566265115250
+      spriteID: 4b444e5a97b19d4a0800000000000000
+      internalID: -6568188372254964556
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: eyes_03_1
+      name: eyes_03 1_1
       rect:
         serializedVersion: 2
-        x: 663
-        y: 735
-        width: 280
-        height: 276
+        x: 332
+        y: 367
+        width: 136
+        height: 34
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -184,20 +184,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3ece18b7105edb450800000000000000
-      internalID: 6106288464314100963
+      spriteID: 9bf4da393e17e2ea0800000000000000
+      internalID: -5895649639932276807
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: eyes_03_2
+      name: eyes_03 1_2
       rect:
         serializedVersion: 2
-        x: 55
-        y: 351
-        width: 319
-        height: 324
+        x: 27
+        y: 177
+        width: 159
+        height: 148
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -206,20 +206,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2afe61b5f8e97f300800000000000000
-      internalID: 285871439907057570
+      spriteID: 643096252c26f0570800000000000000
+      internalID: 8435069213834019654
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: eyes_03_3
+      name: eyes_03 1_3
       rect:
         serializedVersion: 2
-        x: 653
-        y: 352
-        width: 313
-        height: 299
+        x: 328
+        y: 177
+        width: 156
+        height: 148
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -228,20 +228,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 8c396c056b5c49a20800000000000000
-      internalID: 3068294632976061384
+      spriteID: 9ed741bd74fb07c70800000000000000
+      internalID: 8966877173433794025
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: eyes_03_4
+      name: eyes_03 1_4
       rect:
         serializedVersion: 2
-        x: 153
-        y: 280
-        width: 39
-        height: 60
+        x: 77
+        y: 140
+        width: 18
+        height: 30
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -250,20 +250,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1b0c41d8b87351650800000000000000
-      internalID: 6202925134279655601
+      spriteID: d5763b3f07d679520800000000000000
+      internalID: 2708754032779028317
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: eyes_03_5
+      name: eyes_03 1_5
       rect:
         serializedVersion: 2
-        x: 199
-        y: 136
-        width: 55
-        height: 193
+        x: 100
+        y: 134
+        width: 18
+        height: 31
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -272,20 +272,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 70a4a967de8e07a80800000000000000
-      internalID: -8471014792489186809
+      spriteID: 7bf04ff30456cea60800000000000000
+      internalID: 7704644389149347767
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: eyes_03_6
+      name: eyes_03 1_6
       rect:
         serializedVersion: 2
-        x: 467
-        y: 0
-        width: 548
-        height: 342
+        x: 392
+        y: 134
+        width: 17
+        height: 30
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -294,20 +294,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a363f9b6a12017440800000000000000
-      internalID: 4931725379445405242
+      spriteID: b06a1424230726e70800000000000000
+      internalID: 9106964757658838539
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: eyes_03_7
+      name: eyes_03 1_7
       rect:
         serializedVersion: 2
-        x: 783
-        y: 270
-        width: 34
-        height: 58
+        x: 416
+        y: 137
+        width: 18
+        height: 33
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -316,8 +316,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9a8269b84d8cd5210800000000000000
-      internalID: 1323434680717289641
+      spriteID: 8fce4f8ea50922d60800000000000000
+      internalID: 7864006619472129272
       vertices: []
       indices: 
       edges: []
@@ -326,7 +326,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -336,14 +336,14 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      eyes_03_0: 5882246566265115250
-      eyes_03_1: 6106288464314100963
-      eyes_03_2: 285871439907057570
-      eyes_03_3: 3068294632976061384
-      eyes_03_4: 6202925134279655601
-      eyes_03_5: -8471014792489186809
-      eyes_03_6: 4931725379445405242
-      eyes_03_7: 1323434680717289641
+      eyes_03 1_0: -6568188372254964556
+      eyes_03 1_1: -5895649639932276807
+      eyes_03 1_2: 8435069213834019654
+      eyes_03 1_3: 8966877173433794025
+      eyes_03 1_4: 2708754032779028317
+      eyes_03 1_5: 7704644389149347767
+      eyes_03 1_6: 9106964757658838539
+      eyes_03 1_7: 7864006619472129272
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
