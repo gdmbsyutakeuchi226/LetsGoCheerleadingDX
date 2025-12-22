@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 506e7d5991a2e0844b3c8f954f7d40c0, type: 3}
+  m_Name: FrontHair_01
+  m_EditorClassIdentifier: Assembly-CSharp::PartDataSO
+  partID: 3
+  partName: "\u524D\u9AEA1"
+  partSprite: {fileID: -3743955971870514542, guid: 616cdac170b7cb848942e4b045379945, type: 3}
+  thumbnail: {fileID: -3743955971870514542, guid: 616cdac170b7cb848942e4b045379945, type: 3}
+  category: FrontHair
+  prefab: {fileID: 0}
+  material: {fileID: 0}
