@@ -40,7 +40,17 @@ public class MakingSceneController : MonoBehaviour {
     [Header("フェーズ3 UI 参照")]
     public GameObject appearancePanel; // フェーズ3パネル
     public Transform characterParent; // ちびキャラモデルを配置する親オブジェクト
-    public Transform partButtonContainer; // パーツ選択ボタンを生成する親オブジェクト
+
+    [Header("フェーズ3：キャラプレビュー参照")]
+    public Image frontHairPreview; // 前髪を表示するImage
+    public Image backHairPreview;  // 後ろ髪を表示するImage
+
+    [Header("フェーズ3：マスターデータ")]
+    public List<HairDataSO> hairDataList; // 登録した髪型データのリスト
+
+    [Header("フェーズ3：UI生成用")]
+    public GameObject partButtonPrefab;   // 生成するボタンのプレハブ
+    public Transform partButtonContainer; // ボタンを並べる親要素(Content)
 
     void Start(){
         // 初期パネル設定
@@ -268,6 +278,9 @@ public class MakingSceneController : MonoBehaviour {
         // ★ リスナーが登録されているか確認
         confirmCharInfoButton.onClick.AddListener(OnCharInfoConfirmed);
         confirmCharInfoButton.interactable = false; // 初期は無効化
+
+        // 髪型選択ボタンを動的に生成
+        GenerateHairButtons();
     }
     // 選択されたカテゴリのパーツボタンを動的に生成する
     private void GeneratePartButtons(string category){
@@ -282,7 +295,42 @@ public class MakingSceneController : MonoBehaviour {
         // 取得したパーツデータに基づき、ボタンを生成し、クリックイベントを登録
         // partButton.onClick.AddListener(() => OnPartSelected(partData, characterModel));
     }
+    private void GenerateHairButtons(){
+        // 既存のボタンを削除
+        foreach (Transform child in partButtonContainer){
+            Destroy(child.gameObject);
+        }
 
+        // リストにある髪型分、ボタンを生成
+        foreach (var hairData in hairDataList){
+            GameObject btnObj = Instantiate(partButtonPrefab, partButtonContainer);
+
+            // ボタンの見た目（サムネイル）を設定
+            Image btnImage = btnObj.transform.Find("Icon").GetComponent<Image>();
+            btnImage.sprite = hairData.thumbnail;
+
+            // ボタンクリック時のイベント登録
+            Button btn = btnObj.GetComponent<Button>();
+            btn.onClick.AddListener(() => ApplyHair(hairData));
+        }
+    }
+    // 実際に髪型を入れ替える処理
+    public void ApplyHair(HairDataSO data){
+        // 前髪の差し替え
+        if (frontHairPreview != null){
+            frontHairPreview.sprite = data.frontHairSprite;
+            // スプライトが空なら非表示にする（任意）
+            frontHairPreview.enabled = (data.frontHairSprite != null);
+        }
+
+        // 後ろ髪の差し替え
+        if (backHairPreview != null){
+            backHairPreview.sprite = data.backHairSprite;
+            backHairPreview.enabled = (data.backHairSprite != null);
+        }
+
+        Debug.Log($"髪型を切り替えました: {data.hairName}");
+    }
     // パーツボタンがクリックされた時の処理
     public void OnPartSelected(PartDataSO partData, GameObject characterModel){
         // 選択されたパーツに応じて、キャラクターモデルの該当部分を更新する
