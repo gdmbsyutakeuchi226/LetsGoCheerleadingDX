@@ -38,6 +38,10 @@ public class MakingSceneController : MonoBehaviour {
     [Header("フェーズ2 マスターデータ")]
     public List<CharacterPersonalitySO> personalityDataList;
 
+    [Header("フェーズ3：プレビューオブジェクト（直接アサイン）")]
+    // 生成するのではなく、Hierarchyに既にある ActorPreview をここにドラッグします
+    public GameObject characterPreviewObject;
+
     [Header("フェーズ3 UI 参照")]
     public GameObject appearancePanel; // フェーズ3パネル
     public Transform characterParent; // ちびキャラモデルを配置する親オブジェクト
@@ -263,21 +267,14 @@ public class MakingSceneController : MonoBehaviour {
         // 1. プレハブのロード
         GameObject basePrefab = Resources.Load<GameObject>("Prefabs/BaseCharacter");
 
-        if (basePrefab == null){
-            // ★★★ ロード失敗時に警告を出し、処理を中断 ★★★
-            Debug.LogError("エラー: キャラクターのベースプレハブが見つかりません。パスを確認してください: Resources/Prefabs/BaseCharacter");
-            return;
+        // ★★★ Resources.Load の処理をすべて削除し、これだけにします ★★★
+        if (characterPreviewObject != null)
+        {
+            characterPreviewObject.SetActive(true); // 非表示にしていた場合は表示する
         }
-
-        // 2. インスタンス化
-        // Instantiateの第3引数(worldPositionStays)は不要なので削除
-        GameObject characterModel = Instantiate(basePrefab, characterParent);
-
-        // UIとして扱う場合、生成直後に位置をリセットするのがコツです
-        RectTransform rect = characterModel.GetComponent<RectTransform>();
-        if (rect != null){
-            rect.anchoredPosition = Vector2.zero; // パネルの中央に配置
-            rect.localScale = Vector3.one;        // サイズを1倍に
+        else
+        {
+            Debug.LogError("characterPreviewObject がセットされていません！");
         }
 
         // 最初のカテゴリ（例: 髪型）のパーツボタンを生成
@@ -302,15 +299,21 @@ public class MakingSceneController : MonoBehaviour {
         var filteredParts = allPartsList.Where(p => p.category == currentCategory).ToList();
 
         // 3. 抽出したデータ分、ボタンを生成
-        foreach (var partData in filteredParts)
-        {
+        foreach (var partData in filteredParts){
             GameObject btnObj = Instantiate(partButtonPrefab, partButtonContainer);
 
-            // アイコンの設定
-            Image btnImage = btnObj.transform.Find("Icon").GetComponent<Image>();
-            if (btnImage != null) btnImage.sprite = partData.thumbnail;
+            // "Icon" という名前の子オブジェクトを探す
+            Transform iconTransform = btnObj.transform.Find("Icon");
 
-            // クリックイベントの登録
+            if (iconTransform != null){
+                Image btnImage = iconTransform.GetComponent<Image>();
+                if (btnImage != null){
+                    btnImage.sprite = partData.thumbnail;
+                }
+            }else{
+                Debug.LogWarning("ボタンプレハブの中に 'Icon' という名前のオブジェクトが見つかりません！");
+            }
+
             Button btn = btnObj.GetComponent<Button>();
             btn.onClick.AddListener(() => ApplyPart(partData));
         }
