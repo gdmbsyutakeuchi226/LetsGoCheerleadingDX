@@ -8037,7 +8037,7 @@ GameObject:
   - component: {fileID: 1747627516}
   - component: {fileID: 1747627515}
   m_Layer: 5
-  m_Name: BackHairTab (1)
+  m_Name: EyesTab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
