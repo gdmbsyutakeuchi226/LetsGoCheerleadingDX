@@ -49,10 +49,12 @@ public class MakingSceneController : MonoBehaviour {
     [Header("フェーズ3：プレビュー参照")]
     public Image frontHairPreview;
     public Image backHairPreview;
+    public Image eyesPreview;
 
     // 現在の選択を個別に保持
     private PartDataSO selectedFrontHair;
     private PartDataSO selectedBackHair;
+    private PartDataSO selectedEyes;
 
     [Header("フェーズ3：マスターデータ")]
     // すべてのパーツ（前髪、後ろ髪など）をこのリストにまとめて入れます
@@ -276,6 +278,12 @@ public class MakingSceneController : MonoBehaviour {
         currentCategory = "BackHair";
         GeneratePartButtons();
     }
+
+    // タブ：目のボタンが押された時
+    public void OnClickEyesTab(){
+        currentCategory = "Eyes";
+        GeneratePartButtons();
+    }
     private void GeneratePartButtons(){
         // 既存のボタンを掃除
         foreach (Transform child in partButtonContainer){
@@ -317,6 +325,11 @@ public class MakingSceneController : MonoBehaviour {
         selectedBackHair = data;
         backHairPreview.sprite = data.partSprite;
         Debug.Log("後ろ髪を変更: " + data.partName);
+    }
+    // 目の瞳を適用するメソッド
+    public void ApplyEyes(PartDataSO data){
+        selectedEyes = data;
+        eyesPreview.sprite = data.partSprite;
     }
 
     // パーツボタンがクリックされた時の処理
